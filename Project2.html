@@ -1,284 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
+<title>Chat Application</title>
 <head>
-     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
     button {
-        color: white;
-        background-color: black;
-        width: 40px;
-        height: 50px;
-        margin-left: 10px;
-        border-radius: 10px;
+      color: white;
+      background-color: black;
+      width: 40px;
+      height: 50px;
+      margin-left: 10px;
+      border-radius: 10px;
     }
-#chat1 .form-outline .form-control~.form-notch div {
-pointer-events: none;
-border: 1px solid;
-border-color: #eee;
-box-sizing: border-box;
-background: transparent;
-}
 
-#chat1 .form-outline .form-control~.form-notch .form-notch-leading {
-left: 0;
-top: 0;
-height: 100%;
-border-right: none;
-border-radius: .65rem 0 0 .65rem;
-}
+    #chat1 .form-outline .form-control~.form-notch div {
+      pointer-events: none;
+      border: 1px solid;
+      border-color: #eee;
+      box-sizing: border-box;
+      background: transparent;
+    }
 
-#chat1 .form-outline .form-control~.form-notch .form-notch-middle {
-flex: 0 0 auto;
-max-width: calc(100% - 1rem);
-height: 100%;
-border-right: none;
-border-left: none;
-}
+    #chat1 .form-outline .form-control~.form-notch .form-notch-leading {
+      left: 0;
+      top: 0;
+      height: 100%;
+      border-right: none;
+      border-radius: .65rem 0 0 .65rem;
+    }
 
-#chat1 .form-outline .form-control~.form-notch .form-notch-trailing {
-flex-grow: 1;
-height: 100%;
-border-left: none;
-border-radius: 0 .65rem .65rem 0;
-}
+    #chat1 .form-outline .form-control~.form-notch .form-notch-middle {
+      flex: 0 0 auto;
+      max-width: calc(100% - 1rem);
+      height: 100%;
+      border-right: none;
+      border-left: none;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-notch .form-notch-leading {
-border-top: 0.125rem solid green;
-border-bottom: 0.125rem solid green;
-border-left: 0.125rem solid green;
-}
+    #chat1 .form-outline .form-control~.form-notch .form-notch-trailing {
+      flex-grow: 1;
+      height: 100%;
+      border-left: none;
+      border-radius: 0 .65rem .65rem 0;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-notch .form-notch-leading,
-#chat1 .form-outline .form-control.active~.form-notch .form-notch-leading {
-border-right: none;
-transition: all 0.2s linear;
-}
+    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-leading {
+      border-top: 0.125rem solid green;
+      border-bottom: 0.125rem solid green;
+      border-left: 0.125rem solid green;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-notch .form-notch-middle {
-border-bottom: 0.125rem solid;
-border-color: green;
-}
+    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-leading,
+    #chat1 .form-outline .form-control.active~.form-notch .form-notch-leading {
+      border-right: none;
+      transition: all 0.2s linear;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-notch .form-notch-middle,
-#chat1 .form-outline .form-control.active~.form-notch .form-notch-middle {
-border-top: none;
-border-right: none;
-border-left: none;
-transition: all 0.2s linear;
-}
+    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-middle {
+      border-bottom: 0.125rem solid;
+      border-color: green;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-notch .form-notch-trailing {
-border-top: 0.125rem solid green;
-border-bottom: 0.125rem solid green;
-border-right: 0.125rem solid green;
-}
+    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-middle,
+    #chat1 .form-outline .form-control.active~.form-notch .form-notch-middle {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      transition: all 0.2s linear;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-notch .form-notch-trailing,
-#chat1 .form-outline .form-control.active~.form-notch .form-notch-trailing {
-border-left: none;
-transition: all 0.2s linear;
-}
+    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-trailing {
+      border-top: 0.125rem solid green;
+      border-bottom: 0.125rem solid green;
+      border-right: 0.125rem solid green;
+    }
 
-#chat1 .form-outline .form-control:focus~.form-label {
-color: green;
-}
+    #chat1 .form-outline .form-control:focus~.form-notch .form-notch-trailing,
+    #chat1 .form-outline .form-control.active~.form-notch .form-notch-trailing {
+      border-left: none;
+      transition: all 0.2s linear;
+    }
 
-#chat1 .form-outline .form-control~.form-label {
-color: #bfbfbf;
-}
-</style>
+    #chat1 .form-outline .form-control:focus~.form-label {
+      color: green;
+    }
+
+    #chat1 .form-outline .form-control~.form-label {
+      color: #bfbfbf;
+      font-size: 12px;
+    }
+
+    .card-body {
+      background-color: white;
+      width: 100%;
+      height: 200px;
+      border: 1px black;
+      overflow-y: scroll;
+    }
+
+    .card-body::-webkit-scrollbar {
+      display: none;
+    }
+    .form-control::-webkit-scrollbar {
+      display: none;
+    }
+    .card-body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
 </head>
+
 <body>
-<section style="background-color: #eee;">
-  <div class="container py-5" >
-
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-8 col-lg-6 col-xl-4">
-
-        <div class="card" id="chat1" style="border-radius: 15px;width: 131%;">
-          <div
-            class="card-header d-flex justify-content-between align-items-center p-3 bg-success text-white border-bottom-0"
-            style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-            <i class="fas fa-angle-left"></i>
-            <p class="mb-0 fw-bold">Chat</p>
-            <i class="fas fa-times"></i>
-          </div>
-          <div class="card-body">
-
-            <div class="d-flex flex-row justify-content-start mb-4">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                alt="avatar 1" style="width: 45px; height: 100%;">
-              <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                <p class="small mb-0">Hi</p>
+  <section style="background-color: #eee;">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          <div class="card" id="chat1" style="border-radius: 15px; width: 131%;">
+            <div
+              class="card-header d-flex justify-content-between align-items-center p-3 bg-success text-white border-bottom-0"
+              style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+              <i class="fas fa-angle-left"></i>
+              <p class="mb-0 fw-bold">Chat</p>
+              <i class="fas fa-times"></i>
+            </div>
+            <div class="card-body">
+              <h4 style="text-align: center;" id="welcome-message">Welcome ! <br> What can I help with?</h4>
+              <div id="chat" style="max-height: 400px; overflow-y: auto;">
+                <div id="chatbot"></div>
+                <div id="chatuser"></div>
               </div>
             </div>
-
-            <div class="d-flex flex-row justify-content-end mb-4">
-              <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                <p class="small mb-0">Hello</p>
-              </div>
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                alt="avatar 1" style="width: 45px; height: 100%;">
+            <div class="form-outline">
+              <textarea class="form-control" style="width:85%; height:45px; border-radius:12px;" id="user-input-field"
+                rows="4"></textarea>
+              <div style="margin-top: -8%;margin-left: 84%;"><button name="send" onclick="send();"
+                  style="background-color: green; width:60%;height:45px;"><i class="material-icons"
+                    style="color:white">send</i></button></div>
+              <label class="form-label" for="textAreaExample">Type your message</label>
             </div>
-
-
-            <div class="d-flex flex-row justify-content-start mb-4">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                alt="avatar 1" style="width: 45px; height: 100%;">
-              <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
-                <p class="small mb-0">Who are you ?</p>
-              </div>
+            <div id="div1">
+               <br>
+               <button onclick="btn(this.textContent)">Q</button><button onclick="btn(this.textContent)">W</button><button onclick="btn(this.textContent)">E</button><button onclick="btn(this.textContent)">R</button><button onclick="btn(this.textContent)">T</button><button onclick="btn(this.textContent)">Y</button><button onclick="btn(this.textContent)">U</button><button onclick="btn(this.textContent)">I</button><button onclick="btn(this.textContent)">O</button><button onclick="btn(this.textContent)">P</button><br><br>
+               <div style="margin-left: 3%;"><button onclick="btn(this.textContent)">A</button><button onclick="btn(this.textContent)">S</button><button onclick="btn(this.textContent)">D</button><button onclick="btn(this.textContent)">F</button><button onclick="btn(this.textContent)">G</button><button onclick="btn(this.textContent)">H</button><button onclick="btn(this.textContent)">J</button><button onclick="btn(this.textContent)">K</button><button onclick="btn(this.textContent)">L</button><br><br></div>
+               <button onclick="shift()" style="width: 65px; ">⇧</button><button onclick="btn(this.textContent)">Z</button><button onclick="btn(this.textContent)">X</button><button onclick="btn(this.textContent)">C</button><button onclick="btn(this.textContent)">V</button><button  onclick="btn(this.textContent)">B</button><button onclick="btn(this.textContent)">N</button><button onclick="btn(this.textContent)">M</button><button onclick="del()" style="width: 65px;">⌫</button><br><br>
+               <button onclick="fun1()" style="width: 65px; ">?123</button><button onclick="btn(',')">,</button><button style="width: 240px;" name="space" onclick="space()">Space</button><button onclick="btn('.')">.</button><button onclick="enter()" style="width: 65px; ">↵</button><br><br>
             </div>
-            <p id="chat"></p>
-            <div class="form-outline" >
-                <textarea class="form-control" style="width:85%; height:60px; border-radius:20px;" id="textAreaExample" rows="4"></textarea>
-                <div style="margin-top: -11%;margin-left: 84%;"><button name="send" onclick="send();" style="background-color: green; width:60%;""><i  class="material-icons" style="color:white">send</i></button></div>
-                <label class="form-label" for="textAreaExample">Type your message</label>
+            <div id="div2">
+              <br>
+              <button onclick="btn('1')">1</button><button onclick="btn('2')">2</button><button onclick="btn('3')">3</button><button onclick="btn('4')">4</button><button onclick="btn('5')">5</button><button onclick="btn('6')">6</button><button onclick="btn('7')">7</button><button onclick="btn('8')">8</button><button onclick="btn('9')">9</button><button onclick="btn('0')">0</button><br><br>
+              <button onclick="btn('@')">@</button><button onclick="btn('#')">#</button><button onclick="btn('$')">$</button><button onclick="btn('_')">_</button><button onclick="btn('&')">&</button><button onclick="btn('-')">-</button><button onclick="btn('+')">+</button><button onclick="btn('(')">(</button><button onclick="btn(')')">)</button><button onclick="btn('/')">/</button><br><br>
+              <button onclick="fun2()" style="width: 65px; "> =\< </button><button onclick="btn('*')">*</button><button onclick="btn('&quot;')">"</button><button onclick="btn('\'')">'</button><button onclick="btn(':')">:</button><button onclick="btn(';')">;</button><button onclick="btn('!')">!</button><button onclick="btn('?')">?</button><button onclick="del()" style="width: 65px;">⌫</button><br><br>
+              <button name="abc" onclick="fun3()" style="width: 65px; ">ABC</button><button onclick="btn(',')">,</button><button style="width: 240px;" name="space" onclick="space()">Space</button><button onclick="btn('.')">.</button><button onclick="enter()" style="width: 65px;">↵</button><br><br>
             </div>
-            <div id = "div1"> 
-                <br> 
-                <button onclick="btn('Q')">Q</button><button onclick="btn('W')">W</button><button onclick="btn('E')">E</button><button onclick="btn('R')">R</button><button onclick="btn('T')">T</button><button onclick="btn('Y')">Y</button><button onclick="btn('U')">U</button><button onclick="btn('I')">I</button><button onclick="btn('O')">O</button><button onclick="btn('P')">P</button><br><br>
-                <div style="margin-left: 3%;"><button onclick="btn('A')">A</button><button onclick="btn('S')">S</button><button onclick="btn('D')">D</button><button onclick="btn('F')">F</button><button onclick="btn('G')">G</button><button onclick="btn('H')">H</button><button onclick="btn('J')">J</button><button onclick="btn('K')">K</button><button onclick="btn('L')">L</button><br><br></div>
-                <button onclick="shift()" style="width: 65px; ">⇧</button><button onclick="btn('Z')">Z</button><button onclick="btn('X')">X</button><button onclick="btn('C')">C</button><button onclick="btn('V')">V</button><button onclick="btn('B')">B</button><button onclick="btn('N')">N</button><button onclick="btn('M')">M</button><button onclick="del()" style="width: 65px;">⌫</button><br><br>
-                <button onclick="fun1()" style="width: 65px; " >?123</button><button onclick="btn(',')">,</button><button style="width: 240px;" name="space" onclick="space()">Space</button><button onclick="btn('.')">.</button><button onclick="enter()" style="width: 65px; ">↵</button><br><br>
+            <div id="div3">
+              <br>
+              <button onclick="btn('~')">~</button><button class="b1" onclick="btn('`')">`</button><button class="b1" onclick="btn('|')">|</button><button class="b1" onclick="btn('•')">•</button><button class="b1" onclick="btn('√')">√</button><button class="b1" onclick="btn('π')">π</button><button class="b1" onclick="btn('÷')">÷</button><button class="b1" onclick="btn('x')">x</button><button class="b1" onclick="btn('@')">9</button><button class="b1" onclick="btn('△')">△</button><br><br>
+              <button onclick="btn('£')">£</button><button class="b2" onclick="btn('¢')">¢</button><button class="b2" onclick="btn('€')">€</button><button class="b2" onclick="btn('¥')">¥</button><button class="b2" onclick="btn('^')">^</button><button class="b2" onclick="btn('º')">º</button><button class="b2" onclick="btn('=')">=</button><button class="b2" onclick="btn('{')">{</button><button class="b2" onclick="btn('}')">}</button><button class="b2" onclick="btn('\\')">\</button><br><br>
+              <button class="b3" onclick="fun1()" style="width: 65px;">?123</button><button class="b3" onclick="btn('%')">%</button><button class="b3" onclick="btn('©')">©</button><button class="b3" onclick="btn('®')">®</button><button class="b3" onclick="btn('™')">™</button><button class="b3" onclick="btn('✔')">✔</button><button class="b3" onclick="btn('[')">[</button><button class="b3" onclick="btn(']')">]</button><button class="b3" onclick="del()" style="width: 65px;">⌫</button><br><br>
+              <button name="abc" class="b3" onclick="fun3()" style="width: 65px;">ABC</button><button class="b3" onclick="btn('<')"> > </button><button class="b3" style="width: 240px;" name="space" onclick="space()">Space</button><button class="b3" onclick="btn('>')">></button><button class="b3" onclick="enter()" style="width: 65px;">↵</button><br><br>
             </div>
-            <div id = "div2"> 
-                <br>
-                <button onclick="btn('1')">1</button><button onclick="btn('2')">2</button><button onclick="btn('3')">3</button><button onclick="btn('4')">4</button><button onclick="btn('5')">5</button><button onclick="btn('6')">6</button><button onclick="btn('7')">7</button><button onclick="btn('8')">8</button><button onclick="btn('9')">9</button><button onclick="btn('0')">0</button><br><br>
-                <button onclick="btn('@')">@</button><button onclick="btn('#')">#</button><button onclick="btn('$')">$</button><button onclick="btn('_')">_</button><button onclick="btn('&')">&</button><button onclick="btn('-')">-</button><button onclick="btn('+')">+</button><button onclick="btn('(')">(</button><button onclick="btn(')')">)</button><button  onclick="btn('/')">/</button><br><br>
-                <button onclick="fun2()" style="width: 65px; ">=\<</button><button onclick="btn('*')">*</button><button onclick="btn('&quot;')">"</button><button onclick="btn('\'')">'</button><button onclick="btn(':')">:</button><button onclick="btn(';')">;</button><button onclick="btn('!')">!</button><button onclick="btn('?')">?</button><button onclick="del()" style="width: 65px;">⌫</button><br><br>
-                <button name="abc" onclick="fun3()" style="width: 65px; ">ABC</button><button onclick="btn(',')">,</button><button style="width: 240px;" name="space" onclick="space()">Space</button><button onclick="btn('.')">.</button><button onclick="enter()" style="width: 65px;">↵</button><br><br>
-            </div>
-            <div id = "div3">
-                <br> 
-                <button onclick="btn('~')">~</button><button class="b1" onclick="btn('`')">`</button><button class="b1" onclick="btn('|')">|</button><button class="b1" onclick="btn('•')">•</button><button class="b1" onclick="btn('√')">√</button><button class="b1" onclick="btn('π')">π</button><button class="b1" onclick="btn('÷')">÷</button><button class="b1" onclick="btn('x')">x</button><button class="b1" onclick="btn('@')">9</button><button class="b1" onclick="btn('△')">△</button><br><br>
-                <button onclick="btn('£')">£</button><button class="b2" onclick="btn('¢')">¢</button><button class="b2" onclick="btn('€')">€</button><button class="b2" onclick="btn('¥')">¥</button><button class="b2" onclick="btn('^')">^</button><button class="b2" onclick="btn('º')">º</button><button class="b2" onclick="btn('=')">=</button><button class="b2" onclick="btn('{')">{</button><button class="b2" onclick="btn('}')">}</button><button class="b2" onclick="btn('\\')">\</button><br><br>
-                <button class="b3" onclick="fun1()" style="width: 65px;">?123</button><button class="b3" onclick="btn('%')">%</button><button class="b3" onclick="btn('©')">©</button><button class="b3" onclick="btn('®')">®</button><button class="b3" onclick="btn('™')">™</button><button class="b3" onclick="btn('✔')">✔</button><button class="b3" onclick="btn('[')">[</button><button class="b3" onclick="btn(']')">]</button><button class="b3" onclick="del()" style="width: 65px;">⌫</button><br><br>
-                <button name="abc" class="b3" onclick="fun3()" style="width: 65px;">ABC</button><button class="b3" onclick="btn('<')"><</button><button class="b3" style="width: 240px;" name="space" onclick="space()">Space</button><button class="b3" onclick="btn('>')">></button><button class="b3" onclick="enter()" style="width: 65px;">↵</button><br><br>
-            </div>
-            <script>
-                var lowercase = true;
-                var input = document.getElementById("textAreaExample");
-                document.getElementById("div2").style.display = "none";
-                document.getElementById("div3").style.display = "none";    
-                function fun1(){
-                     document.getElementById("div1").style.display = "none";  
-                     document.getElementById("div2").style.display = "block"; 
-                     document.getElementById("div3").style.display = "none";  
-                }
-                function fun2(){
-                    document.getElementById("div1").style.display = "none";  
-                    document.getElementById("div2").style.display = "none"; 
-                    document.getElementById("div3").style.display = "block";  
-               }
-               function fun3(){
-                    document.getElementById("div1").style.display = "block";  
-                    document.getElementById("div2").style.display = "none"; 
-                    document.getElementById("div3").style.display = "none";  
-               }
-               function enter(){
-                input.value += "\n";
-               }
-               function del() {
-                var inputValue = input.value;
-                input.value = inputValue.slice(0, inputValue.length - 1);
-               } 
-               function space(){
-                input.value += " ";
-               }       
-                function shift() {
-                    var buttons = document.querySelectorAll('button');
-                    var input = document.getElementById("input");
-                     
-                    buttons.forEach(function(button) {
-                        if (lowercase) {
-                          if(button.name!='space' && button.name!='send' && button.name!='abc'){
-                            button.textContent = button.textContent.toLowerCase();
-                          }
-                        } else {
-                          if(button.name!='space' && button.name!='send' && button.name!='abc'){
-                            button.textContent = button.textContent.toUpperCase();
-                          }
-                        }
-                    });
-        
-                    lowercase = !lowercase;
-                }
-        
-                function btn(value) {
-                    input.value += value;
-                }
-                function send(){
-                    var inputValue = input.value.trim(); 
-                    if (inputValue === "") {
-                        alert("Please type a message!");
-                    } else {
-                        document.querySelector("#chat").innerHTML += `
-                            <div class="d-flex flex-row justify-content-end mb-4">
-                                <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
-                                    <p class="small mb-0">${inputValue}</p>
-                                </div>
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                                    alt="avatar 1" style="width: 45px; height: 100%;">
-                            </div>
-                        `;
-                        input.value="";
-                        var utterance = new SpeechSynthesisUtterance(inputValue);
-            
-                        voices = window.speechSynthesis.getVoices();
-                        utterance.voice = voices[5]
-                       
-                        window.speechSynthesis.speak(utterance);
-
-                    }
-                  }    
-
-                  var xhttp = new XMLHttpRequest();
-                  var apiUrl = 'https://api.openai.com/v1/chat/completions';
-                  var apiKey = 'zse5LyASXru1hqHVDEQJT3BlbkFJJ4ADRqNWBaaCG0bhG2WI'; // Replace with your actual OpenAI API key
-
-                  var requestData = {
-                                          model: 'gpt-3.5-turbo',
-                      messages: [
-                          {
-                              role: 'system',
-                              content: 'You are a helpful assistant.',
-                          },
-                          {
-                              role: 'user',
-                              content: inputValue, // Send user's message to OpenAI
-                          },
-                      ],
-                  };
-
-                  xhttp.onreadystatechange = function () {
-                      if (xhttp.readyState === XMLHttpRequest.DONE) {
-                          if (xhttp.status === 200) {
-                              // Handle the successful response here
-                              console.log(xhttp.responseText);
-                          } else {
-                              // Handle any errors or non-200 responses here
-                              console.error('Error:', xhttp.status, xhttp.statusText);
-                          }
-                      }
-                  };
-
-                  xhttp.open('POST', apiUrl, true);
-                  xhttp.setRequestHeader('Content-Type', 'application/json');
-                  xhttp.setRequestHeader('Authorization', 'Bearer ' + apiKey);
-                  xhttp.send(JSON.stringify(requestData));
-
-                  input.value = ''; // Clear the input after sending
-                            </script>                
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <script>
+    var lowercase = true;
+    var input = document.getElementById("user-input-field");
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("div3").style.display = "none";
+    
+    function fun1() {
+      document.getElementById("div1").style.display = "none";
+      document.getElementById("div2").style.display = "block";
+      document.getElementById("div3").style.display = "none";
+    }
+    function fun2() {
+      document.getElementById("div1").style.display = "none";
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("div3").style.display = "block";
+    }
+    function fun3() {
+      document.getElementById("div1").style.display = "block";
+      document.getElementById("div2").style.display = "none";
+      document.getElementById("div3").style.display = "none";
+    }
+    function enter() {
+      input.value += "\n";
+    }
+    function del() {
+      var inputValue = input.value;
+      input.value = inputValue.slice(0, inputValue.length - 1);
+    }
+    function space() {
+      input.value += " ";
+    }
+    function shift() {
+      var buttons = document.querySelectorAll('button');
+      var input = document.getElementById("user-input-field");
+
+      buttons.forEach(function (button) {
+        if (lowercase) {
+          if (button.name != 'space' && button.name != 'send' && button.name != 'abc') {
+            button.textContent = button.textContent.toLowerCase();
+          }
+        } else {
+          if (button.name != 'space' && button.name != 'send' && button.name != 'abc') {
+            button.textContent = button.textContent.toUpperCase();
+          }
+        }
+      });
+
+      lowercase = !lowercase;
+    }
+
+    function btn(value) {
+      input.value += value;
+      console.log(input.value)
+    }
+    function send() {
+      document.getElementById("welcome-message").style.display = "none";
+      const userInputField = document.getElementById("user-input-field");
+      const inputValue = userInputField.value.trim();
+
+      if (inputValue === "") {
+        alert("Please type a message!");
+        return;
+      } else {
+        displayMessage(inputValue, "user");
+        processUserInput(inputValue);
+      }
+      userInputField.value = "";
+    }
+
+    function displayMessage(inputValue, role) {
+      const chat = document.getElementById("chat");
+      let html = '';
+      const utterance = new SpeechSynthesisUtterance(inputValue);
+      const voices = window.speechSynthesis.getVoices();
+      if (role === "user") {
+        html = `
+      <div class="d-flex flex-row justify-content-end mb-4">
+        <div class="p-3 me-3 border" style="border-radius: 15px; background-color: #fbfbfb;">
+          <p class="small mb-0">${inputValue}</p>
+        </div>
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+             alt="User avatar" style="width: 45px; height: 100%;">
+      </div>
+    `;
+      } else {
+        html = `
+      <div class="d-flex flex-row justify-content-start mb-4">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+             alt="Bot avatar" style="width: 45px; height: 100%;">
+        <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237, .2);">
+          <p class="small mb-0">${inputValue}</p>
+        </div>
+      </div>
+    `;
+      }
+      const div = document.createElement("div");
+      div.innerHTML = html;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    async function processUserInput(userInput) {
+      const myHeaders = new Headers();
+      myHeaders.append("x-goog-api-key", "AIzaSyCnU3pDLvRsUkgEqwykht8u86GToz2s57E");
+      myHeaders.append("Content-Type", "application/json");
+
+      const raw = JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: userInput
+              }
+            ]
+          }
+        ]
+      });
+
+      const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: raw,
+        redirect: "follow"
+      };
+
+      fetch("https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          console.log(result);
+          if (
+            result &&
+            Array.isArray(result.candidates) &&
+            result.candidates.length > 0 &&
+            result.candidates[0].content &&
+            result.candidates[0].content.parts &&
+            result.candidates[0].content.parts.length > 0
+          ) {
+            const reply = result.candidates[0].content.parts[0].text;
+            displayMessage(reply, "bot");
+          } else {
+            displayMessage("Sorry, I couldn't generate a response.", "bot");
+          }
+        })
+        .catch((error) => {
+          console.error("Error calling Gemini API:", error);
+          displayMessage("An error occurred. Please try again later.", "bot");
+        });
+    }
+  </script>
 </body>
+
 </html>
